@@ -12,7 +12,7 @@
         <select id="staDateE2" class="m-1 border border-info rounded-3">
           <option value="" selected>選擇</option>
         </select>
-        <fa icon="magnifying-glass" class="searchBtn p-2 btn btn-primary" onclick="getInfo2(this)" />
+        <fa icon="magnifying-glass" class="searchBtn p-2 btn btn-primary" @click="getInfo2(this)" />
       </div>
       <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 ※</p>
     </div>
