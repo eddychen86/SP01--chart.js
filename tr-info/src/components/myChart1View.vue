@@ -35,8 +35,7 @@ function getInfo1() {
 		axios.get(`https://taiwan-railway.herokuapp.com/${sta1}/${dateS1}/${dateE1}`).then((response) => {
 			resolve(response.data);
 			const resp1 = response.data;
-			// console.log(resp);
-
+			
 			const labelCount1 = [];
 			const data1Count1 = [];
 			const data2Count1 = [];
@@ -51,60 +50,40 @@ function getInfo1() {
 
 				labelCount1.push(newItem1.x);
 				data1Count1.push(newItem1.y1);
-				data2Count1.push(newItem1.y2 * -1);
+				data2Count1.push(newItem1.y2);
 			});
 			// console.log(labelCount1, data1Count1, data2Count1);
-			
-			const ctx1 = document.getElementById("myChart1");
+
+			const ctx1 = $("#myChart1");
 			const data1 = {
 				labels: labelCount1,
 				datasets: [{
-					label: "進站人數",
+					label: "進站總人數",
 					data: data1Count1,
+					fill: true,
 					backgroundColor: "rgba(98, 54, 245, 0.2)",
-					borderColor: "rgba(98, 54, 245, 1)",
-					borderWidth: 1
+					borderColor: "rgba(98, 54, 245)",
+					tension: 0.1,
+					pointStyle: 'circle',
+					pointRadius: 3,
+					pointHoverRadius: 7
 				},{
-					label: "出站人數",
+					label: "出站總人數",
 					data: data2Count1,
+					fill: true,
 					backgroundColor: "rgba(255, 89, 89, 0.2)",
-					borderColor: "rgba(255, 89, 89, 1)",
-					borderWidth: 1
+					borderColor: "rgba(255, 89, 89)",
+					tension: 0.1,
+					pointStyle: 'circle',
+					pointRadius: 3,
+					pointHoverRadius: 7
 				}]
 			}
-			const tooltip1 = {
-				yAlign: "bottom",
-				titleAlign: "center",
-				callbacks: {
-					label: (context) => {
-						return `${context.dataset.label} ${Math.abs(context.raw)}`
-					}
-				}
-			};
 			const config1 = {
-				type: "bar",
+				type: "line",
 				data: data1,
 				options: {
-					// indexAxis: 'y',
-					// maintainAspectRatio: false,
-					scales: {
-						x: {
-							stacked: true
-						},
-						y: {
-							stacked: true,
-							beginAtZero: true,
-							ticks: {
-								callback: (value) => {
-									// console.log(Math.abs(value));
-									return Math.abs(value);
-								}
-							}
-						}
-					},
-					plugins: {
-						tooltip: tooltip1
-					}
+					maintainAspectRatio: false
 				}
 			}
 			const myChart1 = new Chart(ctx1, config1);
