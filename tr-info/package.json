@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "npm run build && node ghpages.js"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.0",
@@ -21,7 +20,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
-    "gh-pages": "^3.2.3",
     "vite": "^2.8.0"
   }
 }
